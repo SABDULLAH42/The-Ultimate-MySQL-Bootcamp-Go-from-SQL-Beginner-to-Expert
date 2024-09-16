@@ -1,0 +1,75 @@
+
+UNIQUE CONSTRAINT--------------
+
+
+CREATE TABLE contacts (
+	name VARCHAR(100) NOT NULL,
+    phone VARCHAR(15) NOT NULL UNIQUE
+);
+ 
+INSERT INTO contacts (name, phone)
+VALUES ('billybob', '8781213455');
+ 
+-- This insert would result in an error:
+INSERT INTO contacts (name, phone)
+VALUES ('billybob', '8781213455')
+
+
+CHECK CONSTRAINT-------------
+
+CREATE TABLE users (
+	username VARCHAR(20) NOT NULL,
+    age INT CHECK (age > 0)
+);
+ 
+CREATE TABLE palindromes (
+  word VARCHAR(100) CHECK(REVERSE(word) = word)
+)
+
+
+
+MULTIPLE COLUMN CONSTRAINT-------------
+
+CREATE TABLE companies (
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    CONSTRAINT name_address UNIQUE (name , address)
+);
+ 
+CREATE TABLE houses (
+  purchase_price INT NOT NULL,
+  sale_price INT NOT NULL,
+  CONSTRAINT sprice_gt_pprice CHECK(sale_price >= purchase_price)
+);
+
+
+
+ALTER TALE adding Columns---------------
+
+ALTER TABLE companies 
+ADD COLUMN phone VARCHAR(15);
+ 
+ALTER TABLE companies
+ADD COLUMN employee_count INT NOT NULL DEFAULT 1;
+
+
+ALTER TALE: dropping Column------------------
+
+ALTER TABLE companies DROP COLUMN phone;
+
+
+ALTER TALE: renaming Column------------------
+
+RENAME TABLE companies to suppliers;
+
+Renaming back the Company table which  we rename it to Supplier earlier------------
+
+ALTER TABLE suppliers RENAME TO companies;
+
+
+Renaming Column name-------------
+
+ALTER TABLE companies
+RENAME COLUMN name TO company_name;
+
+
